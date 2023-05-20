@@ -9,3 +9,7 @@ Deploy your app online (preferably with Firebase), so it can be tested live onli
 # IMPORTANT
 Most browsers enforce the same-origin restriction which may prevent HTTP calls to the Deezer API. To circumvent this problem and to enable CORS(Cross-origin resource sharing) in your app, simply forward requests through a public CORS proxy that adds the Access-Control-Allow-Origin header to any OPTIONS preflight response.
 For example when using the https://cors-anywhere.herokuapp.com/ proxy, then a call intended to https://api.deezer.com/search?q=eminem must become a call to https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=eminem in your code.
+
+![Alt text](./src/img/insp.png?raw=true "Title")
+
+![Alt text](./src/img/insp2.png?raw=true "Title")
