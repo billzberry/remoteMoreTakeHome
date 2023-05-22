@@ -1,10 +1,30 @@
 import '../styles/SearchBox.css'
 
-function SearchBox() {
+interface Props {
+	setSearchValue:React.Dispatch<React.SetStateAction<string>>
+}
+
+function SearchBox({setSearchValue}:Props) {
+	let timeOutChecker:NodeJS.Timeout
+	
+	const onSearch = (inputElement:EventTarget) => {
+		const value = (inputElement as HTMLInputElement).value
+		console.log('value: ', value)
+		if (value) {
+			timeOutChecker = setTimeout(() => {
+				console.log('running...')
+				setSearchValue(value)
+				clearTimeout(timeOutChecker)
+			}, 1000)
+		} else {
+			setSearchValue('')
+		}
+	}
+
 	return (
 		<div className="SearchBox">
 			<div className="SearchBoxContainer">
-				<input type="text" className="input" placeholder='Search...'/>
+				<input type="text" className="input" placeholder='Search...' onKeyUp={(e) => onSearch(e.target)}/>
 			</div>
 		</div>
 	)
