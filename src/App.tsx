@@ -1,5 +1,4 @@
-import React from 'react'
-import './App.css'
+import '../src/styles/App.css'
 import SearchBox from './components/SearchBox'
 import TrackListItem from './components/TrackListItem'
 
