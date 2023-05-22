@@ -9,10 +9,8 @@ function SearchBox({setSearchValue}:Props) {
 	
 	const onSearch = (inputElement:EventTarget) => {
 		const value = (inputElement as HTMLInputElement).value
-		console.log('value: ', value)
 		if (value) {
 			timeOutChecker = setTimeout(() => {
-				console.log('running...')
 				setSearchValue(value)
 				clearTimeout(timeOutChecker)
 			}, 1000)

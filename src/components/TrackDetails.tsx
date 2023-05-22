@@ -1,10 +1,14 @@
 import '../styles/TrackDetails.css'
 
-function TrackDetailsItem() {
+interface Props {
+	artistPageDetails:any
+}
+
+function TrackDetailsItem({artistPageDetails}:Props) {
 	return (
 		<div className="TrackDetailsItem">
 			<div className="TrackDetailsItemContainer">
-				<h1>Item details</h1>
+				<h1>{artistPageDetails.name}</h1>
 			</div>
 		</div>
 	)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search'
+export const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com'
 
 
 export const ApiClient = axios.create({

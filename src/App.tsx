@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import '../src/styles/App.css'
 import SearchBox from './components/SearchBox'
 import TrackListItem from './components/TrackListItem'
+import TrackDetails from './components/TrackDetails'
 import { iTrackListDetails } from './modules/Interfaces'
 import { ApiClient } from './modules/Credentials'
 
@@ -11,17 +12,17 @@ function App() {
 	const [nextValue, setNextValue] = useState<number>(0)
 	const [searchNextValue, setSearchNextValue] = useState<number>(0)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
-	const [artistPage, setArtistPage] = useState<number>(0)
+	const [artistPageID, setArtistPageID] = useState<number>(0)
+	const [artistPageDetails, setArtistPageDetails] = useState<any>({})
 
 	const getTrendingTracks = async () => {
 		setIsLoading(true)
 		try {
-			let result = await ApiClient.get(`?q=trending${nextValue ? '&index='+nextValue : ''}`)
+			let result = await ApiClient.get(`/search?q=trending${nextValue ? '&index='+nextValue : ''}`)
 			if (result && result.data.data) {
 				setTrackLists((current) => [...current, ...result.data.data])
 				if (result.data.next) {
 					let next = result.data.next.split('&index=')[1]
-					console.log('next: ', next, 'result.data.data: ', result.data.data.length)
 					setNextValue(Number(next))
 				} else {
 					setNextValue(0)
@@ -36,7 +37,7 @@ function App() {
 	const getSearchedTracks = async () => {
 		setIsLoading(true)
 		try {
-			let result = await ApiClient.get(`?q=${searchValue}${searchNextValue ? '&index='+searchNextValue : ''}`)
+			let result = await ApiClient.get(`/search?q=${searchValue}${searchNextValue ? '&index='+searchNextValue : ''}`)
 			if (result && result.data.data) {
 				if (searchNextValue) {
 					setTrackLists((current) => [...current, ...result.data.data])
@@ -68,6 +69,30 @@ function App() {
 		}
 	}
 
+	const getTractDetails = async (id:number) => {
+		for (let i = 0; i < trackLists.length; i++) {
+			if (trackLists[i].artist.id === id) {
+				setArtistPageDetails(trackLists[i].artist)
+				break
+			}
+		}
+
+		let topTrackList = await ApiClient.get(`/artist/${id}/top`)
+		if (topTrackList && topTrackList.data) {
+			const data = {...artistPageDetails, trackList: [...topTrackList.data.data]}
+			setArtistPageDetails(data)
+			console.log('artistPageDetails:', artistPageDetails)
+		}
+
+		let albumList = await ApiClient.get(`/artist/${id}/top`)
+		if (albumList && albumList.data) {
+			const data = {...artistPageDetails, albumList: [...albumList.data.data]}
+			setArtistPageDetails(data)
+			console.log('artistPageDetails:', artistPageDetails)
+		}
+		
+	}
+
 	useEffect(() => {
 		if (searchValue) {
 			getSearchedTracks()
@@ -83,10 +108,8 @@ function App() {
 	return (
 		<div className="App">
 			<div className="AppContainer">
-				{artistPage ? (
-					<div className="">
-
-					</div>
+				{artistPageID ? (
+					<TrackDetails artistPageDetails />
 				) : (
 					<>
 						<SearchBox setSearchValue={setSearchValue} />
@@ -99,7 +122,10 @@ function App() {
 								tractTitle={value.title} 
 								albumTitle={value.album.title} 
 								nameOfArtist={value.artist.name}
-								onArtistClick={(id) => {setArtistPage(id)}}
+								onArtistClick={(id) => {
+									setArtistPageID(id)
+									getTractDetails(id)
+								}}
 								key={index}
 							/>) : ''}
 						</div>

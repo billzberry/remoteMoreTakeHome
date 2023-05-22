@@ -1,4 +1,3 @@
-import { iTrackListDetails } from '../modules/Interfaces'
 import '../styles/TrackListItem.css'
 
 interface Props {
@@ -23,18 +22,18 @@ function TrackListItem({artistID, imageUrl, duration, tractTitle, albumTitle, na
 	return (
 		<div className="TrackListItem">
 			<div className="TrackListItem-container">
-				<a href="#" className="TrackListItem-image">
+				<a href="#!" className="TrackListItem-image">
 					<img className="TrackListItem-image-img" src={imageUrl} alt="Track art"/>
 				</a>
 				<div className="TrackListItem-content">
 					<p> {getDuration(duration)} </p>
 
 					<h1>
-						<a href="#">{tractTitle}</a>
+						<a href="#!">{tractTitle}</a>
 					</h1>
 
 					<p>
-						<a href="#" onClick={() => onArtistClick(artistID)}>By {nameOfArtist}</a>
+						<a href="#!" onClick={() => onArtistClick(artistID)}>By {nameOfArtist}</a>
 					</p>
 				</div>
 			</div>
