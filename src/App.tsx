@@ -39,11 +39,11 @@ function App() {
 		try {
 			let result = await ApiClient.get(`/search?q=${searchValue}${searchNextValue ? '&index='+searchNextValue : ''}`)
 			if (result && result.data.data) {
-				if (searchNextValue) {
-					setTrackLists((current) => [...current, ...result.data.data])
-				} else {
+				// if (searchNextValue) {
+				// 	setTrackLists((current) => [...current, ...result.data.data])
+				// } else {
 					setTrackLists(result.data.data)
-				}
+				// }
 				if (result.data.next) {
 					let next = result.data.next.split('&index=')[1]
 					setSearchNextValue(Number(next))
@@ -87,7 +87,7 @@ function App() {
 				{artistPageID ? (
 					<ArtistView id={artistPageID} />
 				) : (
-					<>
+					<div className="AppHome">
 						<SearchBox setSearchValue={setSearchValue} />
 
 						<div className="TrackListItems">
@@ -104,7 +104,7 @@ function App() {
 								key={index}
 							/>) : ''}
 						</div>
-					</>
+					</div>
 				)}
 
 				{/* <ArtistView artistPageDetails={artistPageDetails} /> */}

@@ -1,5 +1,4 @@
 .App {
-	width: 100%;
 	background-color: #FFFFFF;
 }
 
@@ -7,14 +6,31 @@
 	width: 100%;
 	max-width: 1366px;
 	background-color: #FFFFFF;
-	height: 100vh;
 	margin: 0 auto;
-	padding: 0;
+	padding: 0 2%;
 	/* padding-top: 2%; */
+	/* border: 1px solid blue; */
+}
+
+.AppHome {
+	margin-top: 2%;
 }
 
 .TrackListItems {
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	column-gap: 8%;
+}
+
+
+/*============= All mobile screens ===============*/
+@media (min-width: 100px) and (max-width: 1000px) {
+	.AppContainer {
+		width: 80%;
+	}
+
+	.TrackListItems {
+		display: block;
+	}
 }

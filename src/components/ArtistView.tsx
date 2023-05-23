@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ApiClient, getDuration } from '../modules/Credentials'
-import { iAlbumDetails, iArtistDetails, iArtistPageDetails, iTrackListDetails } from '../modules/Interfaces'
+import { iAlbumDetails, iArtistDetails, iTrackListDetails } from '../modules/Interfaces'
 import '../styles/ArtistView.css'
 
 interface Props {
@@ -26,19 +26,16 @@ function ArtistView({id}:Props) {
 		let artistDetails = await ApiClient.get(`/artist/${id}`)
 		if (artistDetails && artistDetails.data) {
 			setArtistDetails(artistDetails.data)
-			console.log('artistDetails:', artistDetails.data)
 		}
 
 		let topTrackList = await ApiClient.get(`/artist/${id}/top`)
 		if (topTrackList && topTrackList.data) {
 			setTopTrackList(topTrackList.data.data)
-			console.log('topTrackList:', topTrackList.data.data)
 		}
 
 		let albumList = await ApiClient.get(`/artist/${id}/albums`)
 		if (albumList && albumList.data) {
 			setAlbumList(albumList.data.data)
-			console.log('albumList:', albumList.data.data)
 		}
 		
 	}

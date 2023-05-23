@@ -91,7 +91,7 @@
 .albumsRow {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 5%;
+    column-gap: 6%;
 }
 
 
@@ -142,3 +142,34 @@ a.TrackListItem-image img {
     color: #FFFFFF;
 }
 
+
+/*============= All mobile screens ===============*/
+@media (min-width: 100px) and (max-width: 1000px) {
+    .sectionOne {
+        display: block;
+    }
+
+    .coverArt {
+        width: 100%;
+    }
+
+    .textInfo {
+        margin: 25%;
+    }
+
+    .topTracks {
+        width: 100%;
+    }
+
+    .sectionTwo {
+        padding: 10%;
+    }
+
+    .albumsRow {
+        display: block;
+    }
+
+    .TrackListItem {
+        width: 100%;
+    }
+}

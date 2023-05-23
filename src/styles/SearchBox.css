@@ -1,6 +1,5 @@
 .SearchBox {
     width: 100%;
-    max-width: 100%;
 }
 
 .SearchBoxContainer input {
@@ -40,3 +39,13 @@
     background-position: 100% center;
     margin-left: 10%;
 }
+
+
+/*============= All mobile screens ===============*/
+@media (min-width: 100px) and (max-width: 1000px) {
+	.SearchBoxContainer input {
+        width: 90%;
+        margin: 0 5%;
+    }
+}
+

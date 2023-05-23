@@ -1,20 +1,17 @@
 .TrackListItem {
     width: 100%;
-    height: auto;
 }
 
 .TrackListItem-container {
-    width: 100%;
-    max-width: 400px;
+    /* width: 100%; */
     margin: 2em auto;
     background-color: #14253d;
     border-radius: 15px;
     margin-bottom: 1rem;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 a.TrackListItem-image {
-    position: relative;
     display: block;
     color: #FFFFFF;
     text-decoration: none;
@@ -43,3 +40,7 @@ a.TrackListItem-image img {
     color: #FFFFFF;
 }
 
+/*============= All mobile screens ===============*/
+@media (min-width: 100px) and (max-width: 1000px) {
+	
+}
