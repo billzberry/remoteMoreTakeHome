@@ -3,7 +3,7 @@ import '../src/styles/App.css'
 import SearchBox from './components/SearchBox'
 import TrackListItem from './components/TrackListItem'
 import ArtistView from './components/ArtistView'
-import { iArtistPageDetails, iTrackListDetails } from './modules/Interfaces'
+import { iTrackListDetails } from './modules/Interfaces'
 import { ApiClient } from './modules/Credentials'
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
 	const [searchNextValue, setSearchNextValue] = useState<number>(0)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [artistPageID, setArtistPageID] = useState<number>(0)
-	const [artistPageDetails, setArtistPageDetails] = useState<iArtistPageDetails>({})
 
 	const getTrendingTracks = async () => {
 		setIsLoading(true)
@@ -39,11 +38,7 @@ function App() {
 		try {
 			let result = await ApiClient.get(`/search?q=${searchValue}${searchNextValue ? '&index='+searchNextValue : ''}`)
 			if (result && result.data.data) {
-				// if (searchNextValue) {
-				// 	setTrackLists((current) => [...current, ...result.data.data])
-				// } else {
-					setTrackLists(result.data.data)
-				// }
+				setTrackLists(result.data.data)
 				if (result.data.next) {
 					let next = result.data.next.split('&index=')[1]
 					setSearchNextValue(Number(next))
