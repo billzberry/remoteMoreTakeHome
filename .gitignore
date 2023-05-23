@@ -136,6 +136,12 @@ dist
 /.pnp
 .pnp.js
 
+package-lock.json
+
+.firebase
+
+/firebase
+
 # testing
 /coverage
 
