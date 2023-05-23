@@ -1,3 +1,4 @@
+import { getDuration } from '../modules/Credentials'
 import '../styles/TrackListItem.css'
 
 interface Props {
@@ -11,13 +12,7 @@ interface Props {
 }
 
 function TrackListItem({artistID, imageUrl, duration, tractTitle, albumTitle, nameOfArtist, onArtistClick}:Props) {
-	const getDuration = (duration:number) => {
-		let result = '00:00'
-		if (duration) {
-			result = '0'+(duration / 60).toFixed(2).split('.').join(':')
-		}
-		return result
-	}
+	
 
 	return (
 		<div className="TrackListItem">

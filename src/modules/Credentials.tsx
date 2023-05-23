@@ -10,3 +10,10 @@ export const ApiClient = axios.create({
     }
 })
 
+export const getDuration = (duration:number) => {
+    let result = '00:00'
+    if (duration) {
+        result = '0'+(duration / 60).toFixed(2).split('.').join(':')
+    }
+    return result
+}

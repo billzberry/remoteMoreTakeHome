@@ -1,0 +1,144 @@
+.TrackDetailsItem {
+    width: 100%;
+    /* border: 1px solid black; */
+}
+
+.TrackDetailsItemContainer {
+    width: 100%;
+}
+
+.sectionOne {
+    display: flex;
+}
+
+.coverArt {
+    width: 70%;
+    position: relative;
+}
+
+.textInfo {
+    margin: 15%;
+    color: #FFFFFF;
+}
+
+.textInfo h1 {
+    font-size: 3vi;
+}
+
+.textInfo h6 {
+    font-size: 1.2vi;
+    margin: 0 0 2% 0;
+    padding: 0;
+}
+
+.textInfo hr {
+    width: 15%;
+    background-color: #DCDCDC;
+    color: #DCDCDC;
+    margin: 0 88% 0 0;
+}
+
+.textInfo p {
+    font-size: 1vi;
+    margin-top: 5%;
+}
+
+.topTracks {
+    width: 30%;
+    padding: 5%;
+}
+
+.topTracks h2 {
+    font-size: 1vi;
+}
+
+.topTracks ul {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    list-style-type: none;
+}
+
+.topTracks ul li {
+    display: block;
+    margin-bottom: 5%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.topTracksItem {
+    display: flex;
+}
+
+.trackNumber {
+    width: 10%;
+}
+
+.trackTitle {
+    width: 75%;
+}
+
+.trackDuration {
+    width: 15%;
+    text-align: right;
+}
+
+.sectionTwo {
+    padding: 5% 15% 5% 10%;
+}
+
+.albumsRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5%;
+}
+
+
+
+
+.TrackListItem {
+    width: 100%;
+    height: auto;
+}
+
+.TrackListItem-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 2em auto;
+    background-color: #14253d;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    padding: 2rem;
+}
+
+a.TrackListItem-image {
+    position: relative;
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a.TrackListItem-image img {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+.TrackListItem-image:hover::after {
+  opacity: 1;
+}
+
+.TrackListItem-content h1 {
+    font-size: 1vi;
+}
+
+.TrackListItem-content h1 a, .TrackListItem-content p a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.TrackListItem-content p {
+    color: #FFFFFF;
+}
+

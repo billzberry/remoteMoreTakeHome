@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import '../src/styles/App.css'
 import SearchBox from './components/SearchBox'
 import TrackListItem from './components/TrackListItem'
-import TrackDetails from './components/TrackDetails'
-import { iTrackListDetails } from './modules/Interfaces'
+import ArtistView from './components/ArtistView'
+import { iArtistPageDetails, iTrackListDetails } from './modules/Interfaces'
 import { ApiClient } from './modules/Credentials'
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 	const [searchNextValue, setSearchNextValue] = useState<number>(0)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [artistPageID, setArtistPageID] = useState<number>(0)
-	const [artistPageDetails, setArtistPageDetails] = useState<any>({})
+	const [artistPageDetails, setArtistPageDetails] = useState<iArtistPageDetails>({})
 
 	const getTrendingTracks = async () => {
 		setIsLoading(true)
@@ -69,30 +69,6 @@ function App() {
 		}
 	}
 
-	const getTractDetails = async (id:number) => {
-		for (let i = 0; i < trackLists.length; i++) {
-			if (trackLists[i].artist.id === id) {
-				setArtistPageDetails(trackLists[i].artist)
-				break
-			}
-		}
-
-		let topTrackList = await ApiClient.get(`/artist/${id}/top`)
-		if (topTrackList && topTrackList.data) {
-			const data = {...artistPageDetails, trackList: [...topTrackList.data.data]}
-			setArtistPageDetails(data)
-			console.log('artistPageDetails:', artistPageDetails)
-		}
-
-		let albumList = await ApiClient.get(`/artist/${id}/top`)
-		if (albumList && albumList.data) {
-			const data = {...artistPageDetails, albumList: [...albumList.data.data]}
-			setArtistPageDetails(data)
-			console.log('artistPageDetails:', artistPageDetails)
-		}
-		
-	}
-
 	useEffect(() => {
 		if (searchValue) {
 			getSearchedTracks()
@@ -109,7 +85,7 @@ function App() {
 		<div className="App">
 			<div className="AppContainer">
 				{artistPageID ? (
-					<TrackDetails artistPageDetails />
+					<ArtistView id={artistPageID} />
 				) : (
 					<>
 						<SearchBox setSearchValue={setSearchValue} />
@@ -124,13 +100,14 @@ function App() {
 								nameOfArtist={value.artist.name}
 								onArtistClick={(id) => {
 									setArtistPageID(id)
-									getTractDetails(id)
 								}}
 								key={index}
 							/>) : ''}
 						</div>
 					</>
 				)}
+
+				{/* <ArtistView artistPageDetails={artistPageDetails} /> */}
 			</div>
 		</div>
 	)
